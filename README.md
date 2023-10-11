@@ -45,3 +45,71 @@ export const metadata = {
 }
 ```
 ![metadata](./public//img/metadata.png)
+
+<br/>
+
+## Routing
+사용자가 접속한 URL의 path에 따라서 콘텐츠를 응답해주는 작업을 `라우팅`이라고 한다.<br/>
+Next.js는 간단하고 직관적인 라우팅을 제공하며, 프로젝트의 복잡성을 효과적으로 관리할 수 있도록 도와준다.
+
+### 0. URL 용어 정리
+`/dashboard/analytics/` 부분을 `path`, `dashboard`와 `analytics` 각각을 `segment`라고 한다
+
+![url](./public/img/url.png)
+
+<br/>
+
+### 1. 페이지 만드는 방법
+`create/pages.js` 파일을 생성하면 `/create` 페이지가 정상 출력된다
+```jsx
+// app/create/page.js
+export default function Create(){
+  return <>
+    Create!!
+  </>
+}
+```
+#### 알 수 있는 것
+- `app` 하위의 폴더는 세그먼트를 의미한다
+- `app/create/page.js` 파일의 반환 값이 상위 컴포넌트의 `layout.js`의 `children` prop으로 전달된다.
+
+<br/>
+
+### 2. Next.js의 라우팅 로직
+Next.js는 레이아웃의 중첩을 허용한다. 때문에 URL 경로의 세그먼트에 따라 콘텐츠를 찾고, 해당 콘텐츠가 위치한 폴더의 `layout.js`를 시작으로 상위 폴더를 탐색하면서 `layout.js`로 감싸준다.
+
+#### 중첩된 하위 레이아웃 만들기
+`app/create/page.js`를 감싸는 `app/create/layout.js` 하위 레이아웃 파일을 생성한다.<br/>
+이처럼 하위 레이아웃이 있다면, `app/create/layout.js`로 `app/create/page.js`를 포장한 후에 `app/layout.js`로 포장한다.
+
+```jsx
+// props : app/create/page.js 리턴값
+export default function Layout(props){
+  return (
+    <form>
+      <h2>Create</h2>
+      {props.children}
+    </form>
+  )
+}
+```
+
+<br/>
+
+### 3. 동적 라우팅(dynamic routing)
+`read/1`, `read/2` 의 1,2와 같이 가변적으로 변경되는 경로를 처리해보자.
+
+### 페이지 생성
+`/app/read/[id]/page.js` 다음과 같이 파일을 생성하면 `/read/1` 페이지가 정상 출력된다
+
+### 라우팅 로직
+`/read/1`로 접속하면 1의 자리에 해당하는 폴더인 [id]의 이름을 기준으로 `props`를 만들어서 주입해준다. 이 값을 사용해서 여러 작업을 처리할 수 있다.
+```jsx
+export default function Read(props){
+  return <>
+    <h2>Read</h2>
+    parameter : {props.params.id}
+  </>
+}
+```
+![routing](./public/img/routing.png)
