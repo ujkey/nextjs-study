@@ -129,3 +129,20 @@ export default function Read(props){
 - 링크를 클릭하면 페이지 전체 리로딩이 일어나지 않고 필요한 콘텐츠만 리로딩
 - 이미 방문한 페이지는 캐슁을 해서 다시 다운로드 받지 않음
 - 미리 페이지를 다운로드 받고, 실제 요청이 있을 때 클라이언트 측에서 즉시 응답함(클릭 전)
+
+<br/>
+
+## 정적인 자원 사용하기(public)
+이미지, robots.txt, favicon.ico와 같은 파일을 static asset라고 한다<br/>
+Next.js에서 정적 자원을 로딩하는 방법을 알아보자
+
+
+### 이미지 로딩 해보기
+#### 1. public 폴더에 이미지 추가
+![static_img](public/img/static_img.png)
+
+#### 2. 이미지 사용
+슬래시(`/`)는 `public` 폴더 하위를 의미한다
+```html
+<img src="/hello.png" width="80" alt="" />
+```
