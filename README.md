@@ -113,3 +113,19 @@ export default function Read(props){
 }
 ```
 ![routing](./public/img/routing.png)
+
+<br/>
+
+## SPA(Single Page Application)
+하나의 페이지에서 모든 작업을 처리하는 앱을 의미한다<br/> 
+서버로부터 가져올 데이터가 있다면 ajax와 같은 방법을 통해서 동적으로 로딩한다
+
+### Link
+```jsx
+<Link href='/'>Home</Link>
+```
+`Link`는 Next.js에서 SPA를 매우 쉽게 구현하도록 도와주는 도구이다
+
+- 링크를 클릭하면 페이지 전체 리로딩이 일어나지 않고 필요한 콘텐츠만 리로딩
+- 이미 방문한 페이지는 캐슁을 해서 다시 다운로드 받지 않음
+- 미리 페이지를 다운로드 받고, 실제 요청이 있을 때 클라이언트 측에서 즉시 응답함(클릭 전)
