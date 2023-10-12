@@ -151,3 +151,52 @@ Next.js에서 정적 자원을 로딩하는 방법을 알아보자
 
 ## 전역 스타일 지정
 전역적인 디자인을 적용하고 싶다면 app/global.css를 수정하면 된다
+
+<br/>
+
+## Json-server로 Backend 구축하기
+Json-server를 이용해서 간단하게 백엔드를 구축해보자
+
+    Nextjs은 백엔드까지 동시에 제공하는 full stack framework이다.
+    Route Handlers를 사용하면 별도의 백엔드를 구축하지 않고 Nextjs API 서버까지 구축할 수 있다.
+
+### 1. `json-server` 실행
+```bash
+npx json-server --port 9999 --watch db.json
+```
+
+### 2. `db.json` 파일 생성 확인 및 수정
+```json
+{
+  "topics": [
+    {
+      "id": 1,
+      "title": "html",
+      "body": "html is .."
+    },
+    {
+      "id": 2,
+      "title": "css",
+      "body": "css is .."
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+}
+```
+
+### 3. 지정한 포트로 접속하여 확인
+![json-server](./public/img/json-server.png)
+  
+### 4. 통신해보기
+```javascript
+const resp = await fetch('http://localhost:9999/topics/');
+const result = await resp.json();
+console.log(result);
+```
+![fetch](./public/img/fetch.png)
