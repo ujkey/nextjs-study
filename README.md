@@ -146,3 +146,8 @@ Next.js에서 정적 자원을 로딩하는 방법을 알아보자
 ```html
 <img src="/hello.png" width="80" alt="" />
 ```
+
+<br/>
+
+## 전역 스타일 지정
+전역적인 디자인을 적용하고 싶다면 app/global.css를 수정하면 된다
