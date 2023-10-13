@@ -1,3 +1,4 @@
+// "use client"; for client-side only code
 //root layout
 import Link from 'next/link'
 import './globals.css'
@@ -8,7 +9,21 @@ export const metadata = {
 }
 
 // children : page.js 파일의 리턴값
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // const [topics, setTopics] = useState([]);
+
+  // server -> client
+  // useEffect(() => {
+  //   fetch('http://localhost:9999/topics')
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       setTopics(result);
+  //     })
+  // }, []);
+
+  const resp = await fetch('http://localhost:9999/topics');
+  const topics = await resp.json();
+
   return (
     <html>
       <body>
@@ -17,8 +32,9 @@ export default function RootLayout({ children }) {
           <Link href='/'>WEB</Link>
         </h1>
         <ol>
-          <li><Link href='/read/1'>HTML</Link></li>
-          <li><Link href='/read/2'>CSS</Link></li>
+          {topics.map((topic) => {
+            return <li key={topic.id}><Link href={`/read/${topic.id}`}>{topic.title}</Link></li>
+          })}
         </ol>
         {children}
         <ul>

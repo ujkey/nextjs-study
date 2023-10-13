@@ -2,12 +2,12 @@
   "topics": [
     {
       "id": 1,
-      "title": "html",
+      "title": "HTML",
       "body": "html is .."
     },
     {
       "id": 2,
-      "title": "css",
+      "title": "CSS",
       "body": "css is .."
     }
   ],
