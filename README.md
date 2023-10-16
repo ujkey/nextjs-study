@@ -330,3 +330,48 @@ fetch 단계에서 캐시를 사용하지 않기 위해 `{cache:'no-cache'}` 를
 ```jsx
 const resp = await fetch('http://localhost:9999/topics/', {cache:'no-cache'}); 
 ```
+
+</br>
+
+## server component에서 client component 사용하기
+### 1. server component에서 client component의 기능이 필요한 부분만 별도의 컴포넌트로 분리
+```jsx
+"use client";
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+
+export function Control() {
+  const params = useParams(); // only client component
+  console.log(params);
+  const id = params.id;
+
+  return (
+    <ul>
+      <li><Link href='/create'>Create</Link></li>
+      { id ? (
+        <>
+          <li><Link href={`/update/${id}`}>Update</Link></li>
+          <li><input type='button' value='Delete' /></li>
+        </>
+      ): null }
+    </ul>
+  );
+}
+```
+
+### 2. server component에서 import 하여 사용
+```jsx
+// ...
+import { Control } from './Control';
+
+export default async function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        // ...
+        <Control />
+      </body>
+    </html>
+  )
+}
+```

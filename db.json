@@ -11,24 +11,14 @@
       "body": "css is .."
     },
     {
-      "title": "타이틀",
-      "body": "바디",
+      "title": "Javascript",
+      "body": "Javascript is ..",
       "id": 3
-    },
-    {
-      "title": "Title_4",
-      "body": "Body_4",
-      "id": 4
-    },
-    {
-      "title": "Title_5",
-      "body": "Body_5",
-      "id": 5
     },
     {
       "title": "React",
       "body": "React is ...",
-      "id": 6
+      "id": 4
     }
   ],
   "posts": [
