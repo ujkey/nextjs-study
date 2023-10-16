@@ -21,7 +21,7 @@ export default async function RootLayout({ children }) {
   //     })
   // }, []);
 
-  const resp = await fetch('http://localhost:9999/topics');
+  const resp = await fetch('http://localhost:9999/topics/', {cache:'no-cache'}); //{cache:'no-cache'}를 추가하면 캐시를 사용하지 않음
   const topics = await resp.json();
 
   return (
