@@ -14,7 +14,7 @@ export function Control() {
         <>
           <li><Link href={`/update/${id}`}>Update</Link></li>
           <li><input type='button' value='delete' onClick={() => {
-            fetch(`http://localhost:9999/topics/${id}`, { method: 'DELETE' })
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}topics/${id}`, { method: 'DELETE' })
               .then(resp => resp.json())
               .then(result => {
                 router.push('/');
