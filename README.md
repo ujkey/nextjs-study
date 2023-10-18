@@ -203,7 +203,7 @@ npx json-server --port 9999 --watch db.json
 <br/>
 
 ## 서버 컴포넌트 vs 클라이언트 컴포넌트
-[🔗 서버 컴포넌트(Server Component)](/server_component.md)
+[🔗 서버 컴포넌트(Server Component)](/서버%20컴포넌트(Server%20Component).md)
 
 <br/>
 
