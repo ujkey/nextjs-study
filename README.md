@@ -138,6 +138,36 @@ export default function Read(props){
 
 <br/>
 
+## 라우터
+### 라우터 객체 생성
+`useRouter`를 사용하면 라우터 객체를 생성할 수 있다<br/>
+```jsx
+const router = useRouter();
+```
+
+### 사용
+`router.push`를 사용하면 페이지 리로드 없이 사용자의 화면을 해당 페이지로 이동한다
+```jsx
+router.push(`/read/${topic.id}`);
+```
+`router.refresh`를 사용하면 서버 컴포넌트를 서버 쪽에서 다시 랜더링해서 새로 고침할 수 있다
+```jsx
+router.refresh();
+```
+
+### cache 업데이트
+`router.refresh()`를 했음에도 갱신되지 않는다면, 서버쪽에서 fetch를 사용하면 응답 결과를 저장하기 때문이다.<br/>
+fetch 단계에서 캐시를 사용하지 않기 위해 `{cache:'no-cache'}` 를 추가한다. 랜더링 될 때매다 캐쉬를 사용하지 않고 신선한 데이터를 가져온다.(매번 MISS)
+
+    MISS: 캐쉬가 없기 때문에 서버에 실제로 접속해서 데이터를 가져왔다는 뜻
+    HIT: 캐쉬를 사용했다는 뜻
+  
+```jsx
+const resp = await fetch('http://localhost:9999/topics/', {cache:'no-cache'}); 
+```
+
+</br>
+
 ## 정적인 자원 사용하기(public)
 이미지, robots.txt, favicon.ico와 같은 파일을 static asset라고 한다<br/>
 Next.js에서 정적 자원을 로딩하는 방법을 알아보자
