@@ -254,3 +254,8 @@ NEXT_PUBLIC_API_URL=http://localhost:9999
 ```jsx 
 const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topics/`);
 ```
+
+<br/>
+
+## Reference
+[🔗 reference_01](https://opentutorials.org/course/5098)
